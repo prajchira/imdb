@@ -1,3 +1,26 @@
+Praj Chirathivat: FilmMaster IMDB Project
+
+1. I created this project so that film enthusiasts can see what movies are currently popular and what movies they want to watch in the future. This project is an IMDb clone in which there are 2 main components. 
+
+The first component is the trending page outputs the 20 most trending movies of the week. Trendiness is ranked by "popularity", in which database tMDB has its own algorithm to calculate. The higher the score means the more popular the movie is. The score constantly updates everytime you refresh the page. 
+
+The second component is the "find" page, which serves as a search engine for learning about different movies. You can also "favorite" movies by clicking on the heart symbol (must click the small grey circle below the overview of a movie cell to see) to keep track of movies you enjoy or want to watch. You can view your liked movies through pressing the "Favorite Movies" button at the top. Users can also sort their search with 3 different modes: popularity, rating, and normal. Normal is just a regular search in which your query tries to match the closest word to the title name. Rating puts the highest rated movies at the front of the results. Popularity puts the highest popularity score movies at the front of the results. The "Ratings" and "Popularity" setting ranks only the top 20 movies whose titles are spelled most similar to the query. 
+
+2. I included a React/Tailwind CSS Frontend with different visible components, such as search bar, navigation bar, "favorite" button, and many images. I also worked on mobile responsiveness whereby the pictures and the grid organization changes as I adjust the screen size. When you scroll down in the "trending", I also created a background gradient which turns pink from white. 
+
+    Regarding the Backend, I performed several API calls to the tMDB database, retrieving all of my data for my website, including photos. I used the Axios library to easily make HTTP requests to TMDb's API.
+To make sure that I retreive the right information, I used the Console to analyze the Objects outputted from my API calls. These objects would be furthur utilized for mappings, which is key for outputting my results in both "trending" page and "find" page. 
+
+    I also deployed my site through netlify!
+
+3. I spent around 5 hours on this project. 
+
+4. Deployment link: https://64f981cb4a4e9a48c18cde9e--snazzy-sable-44fcdb.netlify.app/
+
+
+
+Below is how to use react:
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +91,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
