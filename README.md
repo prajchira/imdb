@@ -6,16 +6,15 @@ The first component is the trending page outputs the 20 most trending movies of 
 
 The second component is the "find" page, which serves as a search engine for learning about different movies. You can also "favorite" movies by clicking on the "no" symbol (if movie isn't rated before, must click the small grey circle below the overview of a movie cell to add to "favorite") to keep track of movies you enjoy or want to watch. You can view your liked movies through pressing the "Favorite Movies" button at the top. Users can also sort their search with 3 different modes: popularity, rating, and normal. Normal is just a regular search in which your query tries to match the closest word to the title name. Rating puts the highest rated movies at the front of the results. Popularity puts the highest popularity score movies at the front of the results. The "Ratings" and "Popularity" setting ranks only the top 20 movies whose titles are spelled most similar to the query. 
 
-2. I included a React/Tailwind CSS Frontend with different visible components, such as search bar, navigation bar, "favorite" button, and many images. I also worked on mobile responsiveness whereby the pictures and the grid organization changes as I adjust the screen size. When you scroll down in the "trending", I also created a background gradient which turns pink from white. I also created a special 404 not found page. 
+2. I included a React/Tailwind CSS Frontend with different visible components, such as search bar, navigation bar, "favorite" button, and many images. I also worked on mobile responsiveness whereby the pictures and the grid organization changes as I adjust the screen size. When you scroll down in the "trending", I also created a background gradient which turns pink from white. I also created a special 404 not found page.
 
-    Regarding the Backend, I performed several API calls to the tMDB database, retrieving all of my data for the website, including photos. I used the Axios library to easily make HTTP requests to TMDb's API.
-To make sure that I retreive the right information, I used the Console to analyze the Objects outputted from my API calls. These objects would be furthur utilized for mappings, which is key for outputting my results in both "trending" page and "find" page. 
+    Regarding the Backend, I performed several API calls to the tMDB database, retrieving all of my data for the website, including photos. I used the Axios library to easily make HTTP requests to TMDb's API. To make sure that I retreive the right information, I used the Console to analyze the Objects outputted from my API calls. These objects would be furthur utilized for mappings, which is key for outputting my results in both "trending" page and "find" page. 
 
     I also deployed my site through netlify!
 
 3. I spent around 5 hours on this project. 
 
-4. Deployment link: https://64f981cb4a4e9a48c18cde9e--snazzy-sable-44fcdb.netlify.app/
+4. Deployment link: https://64fa2bf19f05cd4d085cfc07--snazzy-sable-44fcdb.netlify.app/
 
 
 Below is how to use react:
