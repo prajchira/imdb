@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import ToggleButton from './toggleButton';
 
@@ -14,9 +14,18 @@ function SearchBar() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeButton, setActiveButton] = useState("option3");
 
-  const toggleEmoji = (movieId, isFavorite) => {
- 
-  
+  useEffect(() => {
+    // When switching between tabs, update emojis and button labels
+    if (selectedTab === 'all') {
+      setEmojis(results.map((result) => {
+        return favorites.some((favorite) => favorite.id === result.id) ? '🙅' : '❤️';
+      }));
+    } else if (selectedTab === 'hearts') {
+      setEmojis(favorites.map(() => '🙅'));
+    }
+  }, [selectedTab, results, favorites]);
+
+  const toggleEmoji = (movieId) => {
     // Find the index of the movie with the given ID in the results array
     const index = results.findIndex((movie) => movie.id === movieId);
   
@@ -30,24 +39,25 @@ function SearchBar() {
     updatedEmojis[index] = emojis[index] === '❤️' ? '🙅' : '❤️';
     setEmojis(updatedEmojis);
   
-    if (isFavorite) {
-      // Remove the movie from favorites and set the "❤️" emoji
-      const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
-      setFavorites(updatedFavorites);
-    } else {
+    if (selectedTab === 'all') {
       // Check if the movie is already in favorites
       const isAlreadyFavorite = favorites.some((favorite) => favorite.id === movieId);
   
       if (isAlreadyFavorite) {
-        // Remove the movie from favorites and set the "❤️" emoji
+        // Remove the movie from favorites
         const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
         setFavorites(updatedFavorites);
       } else {
         // Add the movie to favorites with the "no" emoji
-        setFavorites([...favorites, { ...results[index], emoji: '🙅' }]);
+        setFavorites([...favorites, results[index]]);
       }
+    } else if (selectedTab === 'hearts') {
+      // Remove the movie from favorites
+      const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
+      setFavorites(updatedFavorites);
     }
   };
+
 
   const handleButtonClick = (id) => {
     setActiveButton(id);
@@ -106,15 +116,6 @@ function SearchBar() {
   return (
     
    <>
-        {/* <form onSubmit={handleSubmit}>
-        <input className = "text-center place-content-center w-[400px] h-[60px] snap-center item-center"
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleInputChange}
-        />
-        <button className = "border-solid border-cyan-600 m-5" type="submit">Search</button>
-        </form> */}
         <div>
             {/* Tabs */}
             <div className="flex justify-center space-x-4 mb-4">
@@ -168,19 +169,6 @@ function SearchBar() {
         </button>
       </form>
     </div>
-        {/* <div className='place-items-center flex w-full mx-1 m-10 justify-center flex flex-wrap'>
-        {results.map((movie) => (
-            <div>
-                <div><img src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} className = "border-4 border-indigo-600 rounded-2xl sm:h-[200px] md:w-[300px] m-10 w-[200px] h-[300px]"/></div>
-                <div className = "m-5 text-center font-bold my-2 text-2xl">{movie.title}</div>
-                <div className = "text-center font-bold text-teal-600 my-6">Popularity Score: {movie.popularity}</div>
-                <div className = "text-center text-teal-600 my-6">Overview: {movie.overview}</div>
-
-
-
-            </div>
-            ))}
-        </div> */}
 
         <div className="grid grid-cols-3 gap-4">
             {filteredMovies.map((movie, index) => (

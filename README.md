@@ -8,13 +8,13 @@ The second component is the "find" page, which serves as a search engine for lea
 
 2. I included a React/Tailwind CSS Frontend with different visible components, such as search bar, navigation bar, "favorite" button, and many images. I also worked on mobile responsiveness whereby the pictures and the grid organization changes as I adjust the screen size. When you scroll down in the "trending", I also created a background gradient which turns pink from white. I also created a special 404 not found page.
 
-    Regarding the Backend, I performed several API calls to the tMDB database, retrieving all of my data for the website, including photos. I used the Axios library to easily make HTTP requests to TMDb's API. To make sure that I retreive the right information, I used the Console to analyze the Objects outputted from my API calls. These objects would be furthur utilized for mappings, which is key for outputting my results in both "trending" page and "find" page. 
+    Regarding the Backend, I performed several API calls to the tMDB database, retrieving all of my data for the website, including photos. I used the Axios library to easily make HTTP requests to TMDb's API. To make sure that I retreive the right information, I used the Console to analyze the Objects outputted from my API calls. These objects would be furthur utilized for mappings, which is key for outputting my results in both "trending" page and "find" page. The search feature comes with the tMDB movie database when querying.
 
     I also deployed my site through netlify!
 
 3. I spent around 5 hours on this project. 
 
-4. Deployment link: https://64fa2bf19f05cd4d085cfc07--snazzy-sable-44fcdb.netlify.app/
+4. Deployment link: https://64fa61e1d2c16501d6310338--snazzy-sable-44fcdb.netlify.app/
 
 
 Below is how to use react:
