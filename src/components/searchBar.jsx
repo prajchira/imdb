@@ -8,25 +8,131 @@ function SearchBar() {
     const [movies, setMovies] = useState([])
     const [results, setResults] = useState([]);
 
-    const [emojis, setEmojis] = useState(new Array(results.length).fill('❤️')); // Initial emoji state
+    // const [emojis, setEmojis] = useState(new Array(results.length).fill('❤️')); // Initial emoji state
+    const [emojis, setEmojis] = useState(results.map(() => '❤️')); // Initial emoji state
+
   const [searchTerm, setSearchTerm] = useState('');
   const [activeButton, setActiveButton] = useState("option3");
 
-  const toggleEmoji = (index) => {
+  // const toggleEmoji = (index) => {
+  //   // Toggle emoji when the button is clicked
+  //   const updatedEmojis = [...emojis];
+  //   updatedEmojis[index] = emojis[index] === '❤️' ? '🙅' : '❤️';
+  //   setEmojis(updatedEmojis);
+  
+  //   // Add or remove the movie from favorites based on the emoji state
+  //   if (emojis[index] === '❤️') {
+  //     setFavorites([...favorites, results[index]]);
+  //   } else {
+  //     const updatedFavorites = favorites.filter((favorite) => favorite.id !== results[index].id);
+  //     setFavorites(updatedFavorites);
+  //   }
+  // };
+
+
+  // const toggleEmoji = (index) => {
+  //   // Toggle emoji when the button is clicked
+  //   const updatedEmojis = [...emojis];
+  //   updatedEmojis[index] = emojis[index] === '❤️' ? '🙅' : '❤️';
+  //   setEmojis(updatedEmojis);
+  
+  //   // Check if the movie is already in favorites
+  //   const movieToAddOrRemove = results[index];
+  //   const isMovieInFavorites = favorites.some((favorite) => favorite.id === movieToAddOrRemove.id);
+  
+  //   if (emojis[index] === '❤️' && !isMovieInFavorites) {
+  //     // Add the movie to favorites if it's not already there
+  //     setFavorites([...favorites, movieToAddOrRemove]);
+  //   } else if (emojis[index] === '🙅' && isMovieInFavorites) {
+  //     // Remove the movie from favorites if it's already there
+  //     const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieToAddOrRemove.id);
+  //     setFavorites(updatedFavorites);
+  //   }
+  // };
+  
+  // const toggleEmoji = (movieId) => {
+  //   // Find the index of the movie with the given ID in the results array
+  //   const index = results.findIndex((movie) => movie.id === movieId);
+  
+  //   if (index === -1) {
+  //     // Movie not found, handle this case accordingly
+  //     return;
+  //   }
+  
+  //   // Toggle emoji when the button is clicked
+  //   const updatedEmojis = [...emojis];
+  //   updatedEmojis[index] = emojis[index] === '❤️' ? '🙅' : '❤️';
+  //   setEmojis(updatedEmojis);
+  
+  //   if (emojis[index] === '❤️') {
+  //     // Add the movie to favorites if it's not already there
+  //     if (!favorites.some((favorite) => favorite.id === movieId)) {
+  //       setFavorites([...favorites, results[index]]);
+  //     }
+  //   } else {
+  //     // Remove the movie from favorites
+  //     const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
+  //     setFavorites(updatedFavorites);
+  //   }
+  // };
+
+  // const toggleEmoji = (movieId) => {
+  //   // Find the index of the movie with the given ID in favorites
+  //   const isFavorite = favorites.some((favorite) => favorite.id === movieId);
+  
+  //   // Toggle emoji when the button is clicked
+  //   const updatedEmojis = results.map((result) =>
+  //     result.id === movieId ? (isFavorite ? '❤️' : '🙅') : emojis.find((emoji, index) => index === movieId)
+  //   );
+  //   setEmojis(updatedEmojis);
+  
+  //   if (isFavorite) {
+  //     // Remove the movie from favorites
+  //     const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
+  //     setFavorites(updatedFavorites);
+  //   } else {
+  //     // Add the movie to favorites
+  //     const movieToAdd = results.find((movie) => movie.id === movieId);
+  //     if (movieToAdd) {
+  //       setFavorites([...favorites, movieToAdd]);
+  //     }
+  //   }
+  // };
+
+  const toggleEmoji = (movieId, isFavorite) => {
+ 
+  
+    // Find the index of the movie with the given ID in the results array
+    const index = results.findIndex((movie) => movie.id === movieId);
+  
+    if (index === -1) {
+      // Movie not found, handle this case accordingly
+      return;
+    }
+  
     // Toggle emoji when the button is clicked
     const updatedEmojis = [...emojis];
     updatedEmojis[index] = emojis[index] === '❤️' ? '🙅' : '❤️';
     setEmojis(updatedEmojis);
   
-    // Add or remove the movie from favorites based on the emoji state
-    if (emojis[index] === '❤️') {
-      setFavorites([...favorites, results[index]]);
-    } else {
-      const updatedFavorites = favorites.filter((favorite) => favorite.id !== results[index].id);
+    if (isFavorite) {
+      // Remove the movie from favorites and set the "❤️" emoji
+      const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
       setFavorites(updatedFavorites);
+    } else {
+      // Check if the movie is already in favorites
+      const isAlreadyFavorite = favorites.some((favorite) => favorite.id === movieId);
+  
+      if (isAlreadyFavorite) {
+        // Remove the movie from favorites and set the "❤️" emoji
+        const updatedFavorites = favorites.filter((favorite) => favorite.id !== movieId);
+        setFavorites(updatedFavorites);
+      } else {
+        // Add the movie to favorites with the "no" emoji
+        setFavorites([...favorites, { ...results[index], emoji: '🙅' }]);
+      }
     }
   };
-
 
   const handleButtonClick = (id) => {
     setActiveButton(id);
@@ -175,7 +281,7 @@ function SearchBar() {
                 <p className="text-center text-teal-600 my-2">Overview: {movie.overview}</p>
                 <div className="text-center mt-2">
                     <button className="border border-grey rounded-xl bg-stone-200 p-2 text-center text-4xl inline-block"
-                            onClick={() => toggleEmoji(index)}>{emojis[index]}
+                            onClick={() => toggleEmoji(movie.id)}>{emojis[index]}
                         </button>
                 </div>
                 </div>
