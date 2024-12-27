@@ -12,9 +12,7 @@ The second component is the "find" page, which serves as a search engine for lea
 
     I also deployed my site through netlify!
 
-3. I spent around 5 hours on this project. 
-
-4. Deployment link: https://64fa61e1d2c16501d6310338--snazzy-sable-44fcdb.netlify.app/
+2. Deployment link: https://64fa61e1d2c16501d6310338--snazzy-sable-44fcdb.netlify.app/
 
 
 Below is how to use react:
